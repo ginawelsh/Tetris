@@ -139,10 +139,16 @@ shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 16
 
 
 class Piece(object):
+#Since we will be creating multiple shapes it makes sense to create a piece class that can store some information about each shape.
     pass
 
 def create_grid(locked_positions={}):
-    pass
+# The way that we will keep track of pieces in the game is using a grid data structure. We will create a multidimensional list that contains 20 lists of 10 
+# elements (rows and columns). Each element in the lists will be a tuple representing the color of the piece in that current position. This will allow us to draw all 
+# of the colored squares quite easily as we can simply loop through the multidimensional list.
+# The locked position parameter will contain a dictionary of key value pairs where each key is a position of a piece that has already fallen and each value is its color. 
+# We will loop through these locked positions and modify our blank grid to show these pieces.
+      pass
 
 def convert_shape_format(shape):
     pass
@@ -154,7 +160,8 @@ def check_lost(positions):
     pass
 
 def get_shape():
-    pass
+# Since we will be dropping shapes down the screen at random we need to generate a random shape. This will be done in the get_shape() function.    
+pass
 
 def draw_text_middle(text, size, color, surface):  
     pass
