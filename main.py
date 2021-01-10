@@ -161,7 +161,7 @@ def check_lost(positions):
 
 def get_shape():
 # Since we will be dropping shapes down the screen at random we need to generate a random shape. This will be done in the get_shape() function.    
-pass
+    pass
 
 def draw_text_middle(text, size, color, surface):  
     pass
@@ -176,12 +176,30 @@ def draw_next_shape(shape, surface):
     pass
 
 def draw_window(surface):
-    pass
+    pygame.draw.rect(surface, (255, 255, 255))
 
 def main():
     pass
+    
 
 def main_menu():
-    pass
+    white = (255, 255, 255)
+    black = (0, 0, 0)
+    red = (255, 0, 0, 125)
+    blue = (0, 0, 255)
+    green = (0, 255, 0)
+    yellow = (255, 255, 0)
+    orange = (255, 128, 0)
 
-main_menu()  # start game
+    pygame.init()
+    window = pygame.display.set_mode((415, 265))
+    pygame.display.set_caption("Classic Tetris")
+
+    running = True
+
+    draw_window(window)
+
+
+    
+
+main_menu() # start game
