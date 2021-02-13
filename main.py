@@ -137,54 +137,6 @@ shapes = [S, Z, I, O, J, L, T]
 # index 0 - 6 represent shape
 
 
-# initialise game machine
-
-pygame.init()
-
-# Set the height and width of the screen
-size = [400, 300]
-screen = pygame.display.set_mode(size)
-pygame.display.set_caption("Tetris Game (CodaBunga version)")
-
-# Define the colors we will use in RGB format (need to declare after game is init?)
-
-WHITE = (255, 255, 255)
-BLACK  = (0, 0, 0)
-RED = (255, 0, 0, 125)
-BLUE = (0, 0, 255)
-GREEN = (0, 255, 0)
-YELLOW = (255, 255, 0)
-ORANGE = (255, 128, 0)
-
-
-
-done = False
-clock = pygame.time.Clock()
-
-while not done:
- 
-    # This limits the while loop to a max of 10 times per second.
-    # Leave this out and we will use all CPU we can.
-    clock.tick(10)
-     
-    for event in pygame.event.get(): # User did something
-        if event.type == pygame.QUIT: # If user clicked close
-            done=True # Flag that we are done so we exit this loop
- 
-    # All drawing code happens after the for loop and but
-    # inside the main while done==False loop.
-     
-    # Clear the screen and set the screen background
-    screen.fill(WHITE)
-
-
-    # Go ahead and update the screen with what we've drawn.
-    # This MUST happen after all the other drawing commands.
-    pygame.display.flip()
- 
-# Be IDLE friendly
-pygame.quit()
-
 
 class Piece(object):
 #Since we will be creating multiple shapes it makes sense to create a piece class that can store some information about each shape.
@@ -226,7 +178,7 @@ def draw_next_shape(shape, surface):
 def draw_window(surface):
     pygame.draw.rect #(surface, (255, 255, 255))
 
-def main():
+def main(): #this is where the game goes?
     pass
     
 
@@ -239,17 +191,54 @@ def main_menu():
     yellow = (255, 255, 0)
     orange = (255, 128, 0)
 
-   # pygame.init()
-    
-    running = True
+    # initialise game machine
 
-    window = pygame.display.set_mode() # initialise a screen or window for display, (fullscreen)
+    pygame.init()
 
-    pygame.display.set_caption("Classic Tetris")
+    # Set the height and width of the screen
+    size = [800, 600]
+    screen = pygame.display.set_mode(size)
+    pygame.display.set_caption("Tetris Game (CodaBunga version)")
 
-    draw_window(window)
+    # Define the colors we will use in RGB format (need to declare after game is init?)
 
-    
+    WHITE = (255, 255, 255)
+    BLACK  = (0, 0, 0)
+    RED = (255, 0, 0, 125)
+    BLUE = (0, 0, 255)
+    GREEN = (0, 255, 0)
+    YELLOW = (255, 255, 0)
+    ORANGE = (255, 128, 0)
+
+
+
+    done = False
+    clock = pygame.time.Clock()
+
+    while not done:
+ 
+    # This limits the while loop to a max of 10 times per second.
+    # Leave this out and we will use all CPU we can.
+        clock.tick(10)
+     
+        for event in pygame.event.get(): # User did something
+            if event.type == pygame.QUIT: # If user clicked close
+                done=True # Flag that we are done so we exit this loop
+ 
+    # All drawing code happens after the for loop and but
+    # inside the main while done==False loop.
+
+        screen.fill(GREEN)
+     
+    # Clear the screen and set the screen background
+
+
+    # Go ahead and update the screen with what we've drawn.
+    # This MUST happen after all the other drawing commands.
+        pygame.display.flip()
+ 
+# Be IDLE friendly
+pygame.quit()
 
 
     
