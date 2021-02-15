@@ -198,7 +198,7 @@ def main_menu():
     # Set the height and width of the screen
     size = [800, 600]
     screen = pygame.display.set_mode(size)
-    pygame.display.set_caption("Tetris Game (CodaBunga version)")
+    pygame.display.set_caption("Tetris Game (CodaBunga version 1.0)")
 
     # Define the colors we will use in RGB format (need to declare after game is init?)
 
@@ -206,7 +206,7 @@ def main_menu():
     BLACK  = (0, 0, 0)
     RED = (255, 0, 0, 125)
     BLUE = (0, 0, 255)
-    GREEN = (0, 255, 0)
+    GREEN = (0, 255, 0, 0)
     YELLOW = (255, 255, 0)
     ORANGE = (255, 128, 0)
 
@@ -228,9 +228,13 @@ def main_menu():
     # All drawing code happens after the for loop and but
     # inside the main while done==False loop.
 
+
+   # Clear the screen and set the screen background
         screen.fill(GREEN)
+
+    # draw rectangle for main menu
+        pygame.draw.rect(screen, BLUE, [150, 10, 50, 20])
      
-    # Clear the screen and set the screen background
 
 
     # Go ahead and update the screen with what we've drawn.
