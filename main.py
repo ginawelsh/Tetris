@@ -196,7 +196,7 @@ def main_menu():
     pygame.init()
 
     # Set the height and width of the screen
-    size = [800, 600]
+    size = [600, 450]
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("Tetris Game (CodaBunga version 1.0)")
 
@@ -233,7 +233,9 @@ def main_menu():
         screen.fill(GREEN)
 
     # draw rectangle for main menu
-        pygame.draw.rect(screen, BLUE, [150, 10, 50, 20])
+        button = pygame.draw.rect(screen, YELLOW, [150, 10, 50, 20])
+
+        pygame.Rect.inflate(button)
      
 
 
