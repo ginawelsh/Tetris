@@ -195,9 +195,10 @@ def main_menu():
 
     pygame.init()
 
+
     # Set the height and width of the screen
-    size = [600, 450]
-    screen = pygame.display.set_mode(size)
+    size = (720, 720)
+    screen = pygame.display.set_mode(res)
     pygame.display.set_caption("Tetris Game (CodaBunga version 1.0)")
 
     # Define the colors we will use in RGB format (need to declare after game is init?)
@@ -210,7 +211,29 @@ def main_menu():
     YELLOW = (255, 255, 0)
     ORANGE = (255, 128, 0)
 
+    # white colour  
+    colour = (255,255,255)  
+  
+    # light shade of the button  
+    colour_light = (170,170,170)  
+  
+    # dark shade of the button  
+    colour_dark = (100,100,100)  
 
+    # stores the width of the  
+    # screen into a variable  
+    width = screen.get_width()  
+  
+    # stores the height of the  
+    # screen into a variable  
+    height = screen.get_height()  
+
+    # defining a font  
+    smallfont = pygame.font.SysFont('Corbel',35)  
+  
+    # rendering a text written in  
+    # this font  
+    text = smallfont.render('quit' , True , color)  
 
     done = False
     clock = pygame.time.Clock()
@@ -235,7 +258,7 @@ def main_menu():
     # draw rectangle for main menu
         button = pygame.draw.rect(screen, YELLOW, [150, 10, 50, 20])
 
-        pygame.Rect.inflate(button)
+      #  pygame.Rect.inflate(button)
      
 
 
