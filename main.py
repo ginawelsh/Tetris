@@ -189,6 +189,7 @@ def main_menu():
     blue = (0, 0, 255)
     green = (0, 255, 0)
     yellow = (255, 255, 0)
+    bright_yellow = (280, 255, 0)
     orange = (255, 128, 0)
 
     # initialise game machine
@@ -198,7 +199,7 @@ def main_menu():
 
     # Set the height and width of the screen
     size = (720, 720)
-    screen = pygame.display.set_mode(res)
+    screen = pygame.display.set_mode(size)
     pygame.display.set_caption("Tetris Game (CodaBunga version 1.0)")
 
     # Define the colors we will use in RGB format (need to declare after game is init?)
@@ -229,14 +230,19 @@ def main_menu():
     height = screen.get_height()  
 
     # defining a font  
-    smallfont = pygame.font.SysFont('Corbel',35)  
+    smallfont = pygame.font.SysFont('Arial',35)  
   
     # rendering a text written in  
     # this font  
-    text = smallfont.render('quit' , True , color)  
+    text = smallfont.render('quit' , True , colour)  
 
     done = False
     clock = pygame.time.Clock()
+
+    # stores the (x,y) coordinates into  
+    # the variable as a tuple  
+    mouse = pygame.mouse.get_pos()  
+      
 
     while not done:
  
@@ -247,16 +253,45 @@ def main_menu():
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 done=True # Flag that we are done so we exit this loop
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                 #if the mouse is clicked on the  
+            # button the game is terminated  
+                if width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40:  
+                    pygame.quit()  
+        
+      
+        # if mouse is hovered on a button it  
+        # changes to lighter shade  
+        if width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40:  
+            pygame.draw.rect(screen,colour_light,[width/2,height/2,140,40])  
+          
+        else:  
+            pygame.draw.rect(screen,colour_dark,[width/2,height/2,140,40])  
+      
+        # superimposing the text onto our button  
+        screen.blit(text , (width/2+50,height/2))  
+
+
+        # yellow button
+        pygame.draw.rect(screen,yellow,(150,450,100,50))  
+
+        if 150+100 > mouse[0] > 150 and 450+50 > mouse[1] > 450:
+            pygame.draw.rect(screen,yellow,(150,450,100,50))
+        else:
+            pygame.draw.rect(screen,yellow,(150,450,100,50))  
+      
+        # updates the frames of the game  
+        pygame.display.update()     
+
  
     # All drawing code happens after the for loop and but
     # inside the main while done==False loop.
 
 
-   # Clear the screen and set the screen background
+       # Clear the screen and set the screen background
         screen.fill(GREEN)
 
-    # draw rectangle for main menu
-        button = pygame.draw.rect(screen, YELLOW, [150, 10, 50, 20])
 
       #  pygame.Rect.inflate(button)
      
