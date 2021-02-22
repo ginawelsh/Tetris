@@ -242,6 +242,15 @@ def main_menu():
     # stores the (x,y) coordinates into  
     # the variable as a tuple  
     mouse = pygame.mouse.get_pos()  
+
+    # if mouse is hovered on a button it  
+    # changes to lighter shade  
+    if width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40:  
+        pygame.draw.rect(screen,colour_light,[width/2,height/2,140,40])  
+          
+    else:  
+        pygame.draw.rect(screen,colour_dark,[width/2,height/2,140,40])  
+      
       
 
     while not done:
@@ -295,7 +304,6 @@ def main_menu():
 
       #  pygame.Rect.inflate(button)
      
-
 
     # Go ahead and update the screen with what we've drawn.
     # This MUST happen after all the other drawing commands.
