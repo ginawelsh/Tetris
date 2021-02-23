@@ -239,18 +239,6 @@ def main_menu():
     done = False
     clock = pygame.time.Clock()
 
-    # stores the (x,y) coordinates into  
-    # the variable as a tuple  
-    mouse = pygame.mouse.get_pos()  
-
-    # if mouse is hovered on a button it  
-    # changes to lighter shade  
-    if width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40:  
-        pygame.draw.rect(screen,colour_light,[width/2,height/2,140,40])  
-          
-    else:  
-        pygame.draw.rect(screen,colour_dark,[width/2,height/2,140,40])  
-      
       
 
     while not done:
@@ -258,55 +246,45 @@ def main_menu():
     # This limits the while loop to a max of 10 times per second.
     # Leave this out and we will use all CPU we can.
         clock.tick(10)
+
+        screen.fill(GREEN)
+
+        #pygame.draw.rect(screen, YELLOW, (150,450,100,50))
+        pygame.draw.rect(screen, RED, (550, 450, 100, 50))
      
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 done=True # Flag that we are done so we exit this loop
-            
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                 #if the mouse is clicked on the  
-            # button the game is terminated  
-                if width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40:  
-                    pygame.quit()  
-        
-      
-        # if mouse is hovered on a button it  
-        # changes to lighter shade  
-        if width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40:  
-            pygame.draw.rect(screen,colour_light,[width/2,height/2,140,40])  
-          
-        else:  
-            pygame.draw.rect(screen,colour_dark,[width/2,height/2,140,40])  
-      
-        # superimposing the text onto our button  
-        screen.blit(text , (width/2+50,height/2))  
 
 
-        # yellow button
-        pygame.draw.rect(screen,yellow,(150,450,100,50))  
+        # stores the (x,y) coordinates into  
+        # the variable as a tuple  
+        mouse = pygame.mouse.get_pos()
 
+        # if mouse hovers over button, it turns white
         if 150+100 > mouse[0] > 150 and 450+50 > mouse[1] > 450:
-            pygame.draw.rect(screen,yellow,(150,450,100,50))
+            pygame.draw.rect(screen, WHITE,(150,450,100,50))
         else:
-            pygame.draw.rect(screen,yellow,(150,450,100,50))  
+            pygame.draw.rect(screen, BLACK,(150,450,100,50))
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+                #if the mouse is clicked on the  
+                # button the game is terminated  
+
+
       
-        # updates the frames of the game  
-        pygame.display.update()     
+            # updates the frames of the game  
+            pygame.display.update()     
 
  
-    # All drawing code happens after the for loop and but
-    # inside the main while done==False loop.
-
-
-       # Clear the screen and set the screen background
-        screen.fill(GREEN)
-
+        # All drawing code happens after the for loop and but
+        # inside the main while done==False loop.
 
       #  pygame.Rect.inflate(button)
      
 
-    # Go ahead and update the screen with what we've drawn.
-    # This MUST happen after all the other drawing commands.
+        # Go ahead and update the screen with what we've drawn.
+       # This MUST happen after all the other drawing commands.
         pygame.display.flip()
  
 # Be IDLE friendly
