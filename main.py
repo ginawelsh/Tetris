@@ -27,6 +27,26 @@ block_size = 30
 top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height
 
+# basic colours
+WHITE = (255, 255, 255)
+BLACK  = (0, 0, 0)
+RED = (255, 0, 0, 125)
+BLUE = (0, 0, 255)
+GREEN = (0, 255, 0, 0)
+YELLOW = (255, 255, 0)
+ORANGE = (255, 128, 0)
+
+
+# white colour  
+colour = (255,255,255)  
+  
+# light shade of the button  
+colour_light = (170,170,170)  
+  
+# dark shade of the button  
+colour_dark = (100,100,100)  
+
+
 
 # SHAPE FORMATS
 
@@ -178,19 +198,27 @@ def draw_next_shape(shape, surface):
 def draw_window(surface):
     pygame.draw.rect #(surface, (255, 255, 255))
 
+def text_objects(text, font):
+    textSurface = font.render(text, True, WHITE)
+    return textSurface, textSurface.get_rect()
+
+def message_display(text):
+    largeText = pygame.font.Font('freesansbold.ttf',115)
+    TextSurf, TextRect = text_objects(text, largeText)
+    TextRect.center = ((display_width/2),(display_height/2))
+    gameDisplay.blit(TextSurf, TextRect)
+ 
+    pygame.display.update()
+ 
+    time.sleep(2)
+ 
+    game_loop()
+
 def main(): #this is where the game goes?
     pass
     
 
 def main_menu():
-    white = (255, 255, 255)
-    black = (0, 0, 0)
-    red = (255, 0, 0, 125)
-    blue = (0, 0, 255)
-    green = (0, 255, 0)
-    yellow = (255, 255, 0)
-    bright_yellow = (280, 255, 0)
-    orange = (255, 128, 0)
 
     # initialise game machine
 
@@ -203,14 +231,6 @@ def main_menu():
     pygame.display.set_caption("Tetris Game (CodaBunga version 1.0)")
 
     # Define the colors we will use in RGB format (need to declare after game is init?)
-
-    WHITE = (255, 255, 255)
-    BLACK  = (0, 0, 0)
-    RED = (255, 0, 0, 125)
-    BLUE = (0, 0, 255)
-    GREEN = (0, 255, 0, 0)
-    YELLOW = (255, 255, 0)
-    ORANGE = (255, 128, 0)
 
     # white colour  
     colour = (255,255,255)  
@@ -230,11 +250,12 @@ def main_menu():
     height = screen.get_height()  
 
     # defining a font  
-    smallfont = pygame.font.SysFont('Arial',35)  
+    small_text = pygame.font.SysFont('Arial',35)  
+    large_text = pygame.font.SysFont('Arial', 115)
   
     # rendering a text written in  
     # this font  
-    text = smallfont.render('quit' , True , colour)  
+    text = small_text.render('quit' , True , colour)  
 
     done = False
     clock = pygame.time.Clock()
@@ -248,30 +269,35 @@ def main_menu():
         clock.tick(10)
 
         screen.fill(GREEN)
-
-        #pygame.draw.rect(screen, YELLOW, (150,450,100,50))
-        pygame.draw.rect(screen, RED, (550, 450, 100, 50))
+        TextSurf, TextRect = text_objects("Classic Tetris", large_text)
+        TextRect.center = ((size[0]/2), (size[1]/2))
+        screen.blit(TextSurf, TextRect)
      
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 done=True # Flag that we are done so we exit this loop
 
 
+    
         # stores the (x,y) coordinates into  
         # the variable as a tuple  
         mouse = pygame.mouse.get_pos()
+        if 310+150 > mouse[0] > 310 and 250+75 > mouse[1] > 250:
+            pygame.draw.rect(screen, YELLOW, (310, 250, 150, 75))
+        else:
+            pygame.draw.rect(screen, RED, (310, 250, 150, 75))
 
         # if mouse hovers over button, it turns white
-        if 150+100 > mouse[0] > 150 and 450+50 > mouse[1] > 450:
-            pygame.draw.rect(screen, WHITE,(150,450,100,50))
+        if 310+150 > mouse[0] > 310 and 450+75 > mouse[1] > 450:
+            pygame.draw.rect(screen, WHITE,(310,450,150,75))
         else:
-            pygame.draw.rect(screen, BLACK,(150,450,100,50))
+            pygame.draw.rect(screen, BLACK,(310,450,150,75))
 
         if event.type == pygame.MOUSEBUTTONDOWN:
                 #if the mouse is clicked on the  
                 # button the game is terminated  
 
-
+            #pygame.draw.rect(screen,BLACK,())
       
             # updates the frames of the game  
             pygame.display.update()     
