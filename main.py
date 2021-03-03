@@ -199,8 +199,8 @@ def draw_window(surface):
     pygame.draw.rect #(surface, (255, 255, 255))
 
 def text_objects(text, font):
-    textSurface = font.render(text, True, WHITE)
-    return textSurface, textSurface.get_rect()
+    textSurface = font.render(text, True, BLACK)
+    return textSurface #textSurface.get_rect()
 
 def message_display(text):
     largeText = pygame.font.Font('freesansbold.ttf',115)
