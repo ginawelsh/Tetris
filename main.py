@@ -35,6 +35,7 @@ BLUE = (0, 0, 255)
 GREEN = (0, 255, 0, 0)
 YELLOW = (255, 255, 0)
 ORANGE = (255, 128, 0)
+SILVER = (192,192,192)
 
 
 # white colour  
@@ -255,7 +256,8 @@ def main_menu():
   
     # rendering a text written in  
     # this font  
-    text = small_text.render('quit' , True , colour)  
+    start_text = small_text.render('START' , True , BLACK)  
+    quit_text = small_text.render('QUIT', True, BLACK)
 
     done = False
     clock = pygame.time.Clock()
@@ -269,9 +271,7 @@ def main_menu():
         clock.tick(10)
 
         screen.fill(GREEN)
-        TextSurf, TextRect = text_objects("Classic Tetris", large_text)
-        TextRect.center = ((size[0]/2), (size[1]/2))
-        screen.blit(TextSurf, TextRect)
+
      
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
@@ -283,15 +283,21 @@ def main_menu():
         # the variable as a tuple  
         mouse = pygame.mouse.get_pos()
         if 310+150 > mouse[0] > 310 and 250+75 > mouse[1] > 250:
-            pygame.draw.rect(screen, YELLOW, (310, 250, 150, 75))
+            start_button = pygame.draw.rect(screen, YELLOW, (310, 250, 150, 75))
+           
         else:
-            pygame.draw.rect(screen, RED, (310, 250, 150, 75))
+            start_button = pygame.draw.rect(screen, RED, (310, 250, 150, 75))
+            
+        screen.blit(start_text, start_button)
 
         # if mouse hovers over button, it turns white
         if 310+150 > mouse[0] > 310 and 450+75 > mouse[1] > 450:
-            pygame.draw.rect(screen, WHITE,(310,450,150,75))
+            quit_button = pygame.draw.rect(screen, WHITE,(310,450,150,75))
+           
         else:
-            pygame.draw.rect(screen, BLACK,(310,450,150,75))
+            quit_button = pygame.draw.rect(screen, SILVER,(310,450,150,75))
+           
+        screen.blit(quit_text, quit_button)
 
         if event.type == pygame.MOUSEBUTTONDOWN:
                 #if the mouse is clicked on the  
@@ -302,21 +308,16 @@ def main_menu():
             # updates the frames of the game  
             pygame.display.update()     
 
- 
+    
         # All drawing code happens after the for loop and but
         # inside the main while done==False loop.
 
-      #  pygame.Rect.inflate(button)
-     
-
-        # Go ahead and update the screen with what we've drawn.
-       # This MUST happen after all the other drawing commands.
+    
+        # Go ahead and update the screen with what we've drawn. This MUST happen after all the other drawing commands.
         pygame.display.flip()
  
 # Be IDLE friendly
 pygame.quit()
 
-
-    
 
 main_menu() # start game
