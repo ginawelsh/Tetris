@@ -242,12 +242,16 @@ def main_menu():
 
     # defining a font  
     small_text = pygame.font.SysFont('Arial',35)  
-    large_text = pygame.font.SysFont('Arial', 115)
+    large_text = pygame.font.SysFont('Arial', 70)
   
     # rendering a text written in  
     # this font  
     start_text = small_text.render('START', True, BLACK)  
     quit_text = small_text.render('QUIT', True, BLACK)
+    title_screen = large_text.render("Welcome to Tetris!", True, BLACK, GREEN)
+
+    title_screen_obj = title_screen.get_rect()
+    title_screen_obj.center = ((width/2), 125)
 
     done = False
     clock = pygame.time.Clock()
@@ -261,21 +265,23 @@ def main_menu():
 
         screen.fill(GREEN)
 
+
+        #screen.blit(title_screen, (310,210,150,75))
+        screen.blit(title_screen, title_screen_obj)
+
      
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 done=True # Flag that we are done so we exit this loop
-
-
     
         # stores the (x,y) coordinates into  
         # the variable as a tuple  
         mouse = pygame.mouse.get_pos()
         if 310+150 > mouse[0] > 310 and 250+75 > mouse[1] > 250:
-            start_button = pygame.draw.rect(screen, YELLOW, (310, 250, 150, 75))
+            pygame.draw.rect(screen, YELLOW, (310, 250, 150, 75))
            
         else:
-            start_button = pygame.draw.rect(screen, RED, (310, 250, 150, 75))
+            pygame.draw.rect(screen, RED, (310, 250, 150, 75))
             
         screen.blit(start_text, (330, 258, 75, 37.5)) #(310,250,75,37.5))
 
@@ -283,21 +289,16 @@ def main_menu():
 
 
         if 310+150 > mouse[0] > 310 and 450+75 > mouse[1] > 450:
-            quit_button = pygame.draw.rect(screen, WHITE,(310,450,150,75))
+            pygame.draw.rect(screen, WHITE,(310,450,150,75))
            
         else:
-            quit_button = pygame.draw.rect(screen, SILVER,(310,450,150,75))
+            pygame.draw.rect(screen, SILVER,(310,450,150,75))
            # TextSurf, TextRect = text_objects("Quit", small_text)
             #text_quit = screen.blit(quit_text, quit_button)
         screen.blit(quit_text, (340, 458, 75, 37.5))
             # updates the frames of the game  
             #pygame.display.update()   
 
-
-       # quit_centre = (155,225,75,37.5)
-        #screen.blit(quit_text, quit_centre)
-
-            #screen.blit()
         #if event.type == pygame.MOUSEBUTTONDOWN:
                 #if the mouse is clicked on the  
                 # button the game is terminated  
@@ -313,6 +314,7 @@ def main_menu():
 
     
         # Go ahead and update the screen with what we've drawn. This MUST happen after all the other drawing commands.
+        pygame.display.update()
         pygame.display.flip()
 
  
