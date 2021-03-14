@@ -1,6 +1,7 @@
 import pygame
 import random
 from math import pi
+import time
 
 # creating the data structure for pieces
 # setting up global vars
@@ -200,20 +201,9 @@ def draw_window(surface):
     pygame.draw.rect #(surface, (255, 255, 255))
 
 def text_objects(text, font):
-    textSurface = font.render(text, True, BLACK)
-    return textSurface #textSurface.get_rect()
+    textSurface = font.render(text, True, YELLOW)
+    return textSurface, textSurface.get_rect()
 
-def message_display(text):
-    largeText = pygame.font.Font('freesansbold.ttf',115)
-    TextSurf, TextRect = text_objects(text, largeText)
-    TextRect.center = ((display_width/2),(display_height/2))
-    gameDisplay.blit(TextSurf, TextRect)
- 
-    pygame.display.update()
- 
-    time.sleep(2)
- 
-    game_loop()
 
 def main(): #this is where the game goes?
     pass
@@ -256,13 +246,12 @@ def main_menu():
   
     # rendering a text written in  
     # this font  
-    start_text = small_text.render('START' , True , BLACK)  
+    start_text = small_text.render('START', True, BLACK)  
     quit_text = small_text.render('QUIT', True, BLACK)
 
     done = False
     clock = pygame.time.Clock()
 
-      
 
     while not done:
  
@@ -288,25 +277,35 @@ def main_menu():
         else:
             start_button = pygame.draw.rect(screen, RED, (310, 250, 150, 75))
             
-        screen.blit(start_text, start_button)
+        screen.blit(start_text, (330, 258, 75, 37.5)) #(310,250,75,37.5))
 
         # if mouse hovers over button, it turns white
+
+
         if 310+150 > mouse[0] > 310 and 450+75 > mouse[1] > 450:
             quit_button = pygame.draw.rect(screen, WHITE,(310,450,150,75))
            
         else:
             quit_button = pygame.draw.rect(screen, SILVER,(310,450,150,75))
-           
-        screen.blit(quit_text, quit_button)
+           # TextSurf, TextRect = text_objects("Quit", small_text)
+            #text_quit = screen.blit(quit_text, quit_button)
+        screen.blit(quit_text, (340, 458, 75, 37.5))
+            # updates the frames of the game  
+            #pygame.display.update()   
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
+
+       # quit_centre = (155,225,75,37.5)
+        #screen.blit(quit_text, quit_centre)
+
+            #screen.blit()
+        #if event.type == pygame.MOUSEBUTTONDOWN:
                 #if the mouse is clicked on the  
                 # button the game is terminated  
 
             #pygame.draw.rect(screen,BLACK,())
       
             # updates the frames of the game  
-            pygame.display.update()     
+    
 
     
         # All drawing code happens after the for loop and but
@@ -315,6 +314,7 @@ def main_menu():
     
         # Go ahead and update the screen with what we've drawn. This MUST happen after all the other drawing commands.
         pygame.display.flip()
+
  
 # Be IDLE friendly
 pygame.quit()
