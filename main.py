@@ -37,6 +37,8 @@ GREEN = (0, 255, 0, 0)
 YELLOW = (255, 255, 0)
 ORANGE = (255, 128, 0)
 SILVER = (192,192,192)
+LIGHT_ORANGE= (255, 229, 204)
+LIGHT_GREEN = (153, 255, 204)
 
 
 # white colour  
@@ -246,9 +248,9 @@ def main_menu():
   
     # rendering a text written in  
     # this font  
-    start_text = small_text.render('START', True, BLACK)  
-    quit_text = small_text.render('QUIT', True, BLACK)
-    title_screen = large_text.render("Welcome to Tetris!", True, BLACK, GREEN)
+    start_text = small_text.render('START', True, BLACK, GREEN)  
+    quit_text = small_text.render('QUIT', True, BLACK, RED)
+    title_screen = large_text.render("Welcome to Tetris!", True, BLACK, LIGHT_GREEN)
 
     title_screen_obj = title_screen.get_rect()
     title_screen_obj.center = ((width/2), 125)
@@ -263,10 +265,8 @@ def main_menu():
     # Leave this out and we will use all CPU we can.
         clock.tick(10)
 
-        screen.fill(GREEN)
+        screen.fill(LIGHT_GREEN)
 
-
-        #screen.blit(title_screen, (310,210,150,75))
         screen.blit(title_screen, title_screen_obj)
 
      
@@ -277,30 +277,38 @@ def main_menu():
         # stores the (x,y) coordinates into  
         # the variable as a tuple  
         mouse = pygame.mouse.get_pos()
+
         if 310+150 > mouse[0] > 310 and 250+75 > mouse[1] > 250:
-            pygame.draw.rect(screen, YELLOW, (310, 250, 150, 75))
+            pygame.draw.rect(screen, YELLOW, (300, 250, 150, 75))
            
         else:
-            pygame.draw.rect(screen, RED, (310, 250, 150, 75))
-            
-        screen.blit(start_text, (330, 258, 75, 37.5)) #(310,250,75,37.5))
+            pygame.draw.rect(screen, GREEN, (300, 250, 150, 75))
+        
 
-        # if mouse hovers over button, it turns white
-
+        # if mouse hovers over button, the border around text turns yellow
 
         if 310+150 > mouse[0] > 310 and 450+75 > mouse[1] > 450:
-            pygame.draw.rect(screen, WHITE,(310,450,150,75))
+            pygame.draw.rect(screen, YELLOW,(300,450,150,75))
            
         else:
-            pygame.draw.rect(screen, SILVER,(310,450,150,75))
-           # TextSurf, TextRect = text_objects("Quit", small_text)
-            #text_quit = screen.blit(quit_text, quit_button)
-        screen.blit(quit_text, (340, 458, 75, 37.5))
-            # updates the frames of the game  
-            #pygame.display.update()   
+            pygame.draw.rect(screen, RED,(300,450,150,75))
 
-        #if event.type == pygame.MOUSEBUTTONDOWN:
-                #if the mouse is clicked on the  
+
+        # render text on menu screen buttons ("START" and "QUIT")
+        screen.blit(start_text, (320, 262, 75, 37.5)) #(310,250,75,37.5)) 
+        screen.blit(quit_text, (330, 462, 75, 37.5))
+             
+
+        #if the mouse is clicked on the QUIT button the game is terminated
+        # 
+        # CONSIDER MAKING THE BELOW A FUNCTION  
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pygame.quit()
+        
+
+
+        #if the mouse is clicked on the  
                 # button the game is terminated  
 
             #pygame.draw.rect(screen,BLACK,())
