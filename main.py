@@ -163,7 +163,9 @@ shapes = [S, Z, I, O, J, L, T]
 
 
 class Piece(object):
-#Since we will be creating multiple shapes it makes sense to create a piece class that can store some information about each shape.
+#Since we will be creating multiple shapes it makes sense to 
+# create a piece class that can store some information about each shape.
+   
     pass
 
 def create_grid(locked_positions={}):
@@ -184,7 +186,8 @@ def check_lost(positions):
     pass
 
 def get_shape():
-# Since we will be dropping shapes down the screen at random we need to generate a random shape. This will be done in the get_shape() function.    
+# Since we will be dropping shapes down the screen at random we need to generate a random shape. 
+# This will be done in the get_shape() function.    
     pass
 
 def draw_text_middle(text, size, color, surface):  
@@ -207,7 +210,7 @@ def text_objects(text, font):
     return textSurface, textSurface.get_rect()
 
 
-def main(): #this is where the game goes?
+def main(): # launch main game
     pass
     
 
@@ -299,31 +302,19 @@ def main_menu():
         screen.blit(quit_text, (330, 462, 75, 37.5))
              
 
-        #if the mouse is clicked on the QUIT button the game is terminated
-        # 
-        # CONSIDER MAKING THE BELOW A FUNCTION  
+        #if the mouse is clicked on the QUIT button the game is terminated 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pygame.quit()
-        
-
-
-        #if the mouse is clicked on the  
-                # button the game is terminated  
-
-            #pygame.draw.rect(screen,BLACK,())
-      
-            # updates the frames of the game  
+                x,y = event.pos
+                if 310+150 > event.pos[0] > 310 and 450+75 > event.pos[1] > 450:
+                    pygame.quit()
+                    sys.exit()
     
 
-    
-        # All drawing code happens after the for loop and but
-        # inside the main while done==False loop.
-
-    
-        # Go ahead and update the screen with what we've drawn. This MUST happen after all the other drawing commands.
+        # Go ahead and update the screen with what we've drawn. 
+        # This MUST happen after all the other drawing commands.
         pygame.display.update()
-        pygame.display.flip()
+       # pygame.display.flip()
 
  
 # Be IDLE friendly
