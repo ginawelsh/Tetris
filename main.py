@@ -287,7 +287,6 @@ def main_menu():
         else:
             pygame.draw.rect(screen, GREEN, (300, 250, 150, 75))
         
-
         # if mouse hovers over button, the border around text turns yellow
 
         if 310+150 > mouse[0] > 310 and 450+75 > mouse[1] > 450:
@@ -296,6 +295,8 @@ def main_menu():
         else:
             pygame.draw.rect(screen, RED,(300,450,150,75))
 
+        start_button = pygame.Rect(300, 250, 150, 75) 
+        quit_button = pygame.Rect(300,450,150,75)
 
         # render text on menu screen buttons ("START" and "QUIT")
         screen.blit(start_text, (320, 262, 75, 37.5)) #(310,250,75,37.5)) 
@@ -305,11 +306,21 @@ def main_menu():
         #if the mouse is clicked on the QUIT button the game is terminated 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
-                x,y = event.pos
-                if 310+150 > event.pos[0] > 310 and 450+75 > event.pos[1] > 450:
-                    pygame.quit()
-                    sys.exit()
+                mouse_pos = event.pos
+                if quit_button.collidepoint(mouse_pos):
+                    pygame.quit();
+                    # prints current location of mouse
+                   # print('button was pressed at {0}'.format(mouse_pos))
+
+
+            # tried to narrow the scope of the mousebuttondown event to
+           # if 310+150 > event.pos[0] > 310 and 450+75 > event.pos[1] > 450 and event.type == pygame.MOUSEBUTTONDOWN:
+              #  pygame.quit()
+                #sys.exit()
     
+           # if pygame.mouse.get_pos()[0] >= 150 and pygame.mouse.get_pos()[1] >= 230:
+           # if pygame.mouse.get_pos()[0] <= 250 and pygame.mouse.get_pos()[1] <= 280:
+                 #   pygame.quit();
 
         # Go ahead and update the screen with what we've drawn. 
         # This MUST happen after all the other drawing commands.
